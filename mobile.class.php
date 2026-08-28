@@ -6,21 +6,14 @@ if(!defined('IN_DISCUZ')) {
 
 class mobileplugin_neko_mobile_home {
 
-	function _redirect() {
+	function common() {
 		global $_G;
 
+		if(basename($_SERVER['SCRIPT_NAME']) != 'index.php') {
+			return;
+		}
 		$home = $_G['cache']['plugin']['neko_mobile_home']['home'];
-		if(!$home || $home == 'forum') {
-			return;
-		}
-		if(CURMODULE != 'index' || !empty($_GET['forumlist']) || !empty($_GET['mod'])) {
-			return;
-		}
-		$cur = $_G['basescript'];
-		if($cur != 'forum' && $cur != 'portal') {
-			return;
-		}
-		if($cur == 'portal' && $home == 'portal') {
+		if(!$home || $home == 'forum' || !empty($_GET['mod']) || !empty($_GET['forumlist'])) {
 			return;
 		}
 
@@ -41,23 +34,9 @@ class mobileplugin_neko_mobile_home {
 		if(!$url) {
 			return;
 		}
-		if($home == 'custom') {
-			$path = basename(parse_url($url, PHP_URL_PATH));
-			if($path == $cur.'.php' || $path == 'index.php') {
-				return;
-			}
+		if($home == 'custom' && basename(parse_url($url, PHP_URL_PATH)) == 'index.php') {
+			return;
 		}
 		dheader('location: '.$url);
-	}
-
-	function common() {
-		$this->_redirect();
-	}
-}
-
-class mobileplugin_neko_mobile_home_forum extends mobileplugin_neko_mobile_home {
-
-	function index() {
-		$this->_redirect();
 	}
 }

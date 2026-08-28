@@ -34,13 +34,14 @@ Discuz! 原生不支持单独为手机版设置首页。本插件允许站长在
 
 ## 实现说明
 
-- 插件通过手机版钩子（`mobileplugin_neko_mobile_home` 与 `mobileplugin_neko_mobile_home_forum`）在请求入口处重定向，不修改任何 Discuz 核心代码；
-- 仅在手机版访问 `index.php` / `forum.php` / `portal.php` 首页时生效，论坛版块页、主题列表页及桌面端均不受影响；
-- 已内置防死循环保护：目标为当前页面（含自定义链接指回首页）时不再跳转。
+- 插件通过手机版全局钩子（`mobileplugin_neko_mobile_home::common()`）重定向，不修改任何 Discuz 核心代码；
+- 仅在手机版访问站点首页入口 `index.php`（含站点根路径 `/`）时生效：点击论坛、门户等导航链接（`forum.php`、`portal.php`）时不会被拦截，正常显示对应页面；
+- 桌面版及手机版的其他页面（版块页、主题列表页等）均不受影响；
+- 已内置防死循环保护：自定义链接指回 `index.php` 时不再跳转。
 
 ## 兼容性
 
-- Discuz! X3.5（PHP 7.x / 8.x） （X3.4以及更低版本未经过测试）
+- Discuz! X3.5（PHP 7.x / 8.x）
 - 需启用官方「掌上论坛」（mobile）插件的触屏版功能
 
 ## 许可
