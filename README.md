@@ -2,6 +2,8 @@
 
 Discuz! X3.5 手机版首页自定义插件（插件 ID：`neko_mobile_home`）
 
+记得要把插件文件夹改成`neko_mobile_home`
+
 Discuz! 原生不支持单独为手机版设置首页。本插件允许站长在后台为手机访问者单独指定首页入口，桌面版完全不受影响。
 
 作者：MCNeko ([www.mcneko.com](https://www.mcneko.com))
